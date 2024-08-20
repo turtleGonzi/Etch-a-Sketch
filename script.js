@@ -15,16 +15,22 @@ function newBox(num = 16) {
         box.style.height = box.style.width;
         box.style.flex = '1 0 6%';
         box.style.boxSizing = 'border-box';
+        box.style.opacity = 0;
         box.style.flexBasis = `${Math.floor(100 / num)}%`
         container.appendChild(box);
     }
+}
+
+function randomColor() {
+    return `rgb(${Math.floor(Math.random() * 255)} ${Math.floor(Math.random() * 255)} ${Math.floor(Math.random() * 255)})`;
 }
 
 function hover() {
     const boxes = document.querySelectorAll('.box');
     boxes.forEach(box => {
         box.addEventListener('mouseenter', () => {
-            box.style.backgroundColor = 'blue';
+            box.style.backgroundColor = randomColor();
+            box.style.opacity = +box.style.opacity + 0.1;
         })
     })
 }
@@ -42,6 +48,7 @@ function btnBox (){
         delBoxs.forEach(box => {
             box.remove();
         })
+
         let pocetBoxu;
         do {
         pocetBoxu = Number(prompt('Zadej pocet boxu na radku az 100', 16));
